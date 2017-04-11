@@ -1,6 +1,6 @@
 # This file contains code that was formerly a part of Julia. License is MIT: http://julialang.org/license
 
-using Base.MPFR: ROUNDING_MODE, big_ln2
+# using Base.MPFR: ROUNDING_MODE, big_ln2
 
 @compat ComplexOrReal{T} = Union{T,Complex{T}}
 
@@ -46,11 +46,11 @@ function digamma(z::ComplexOrReal{Float64})
     ψ -= t * @evalpoly(t,0.08333333333333333,-0.008333333333333333,0.003968253968253968,-0.004166666666666667,0.007575757575757576,-0.021092796092796094,0.08333333333333333,-0.4432598039215686)
 end
 
-function digamma(x::BigFloat)
-    z = BigFloat()
-    ccall((:mpfr_digamma, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
-    return z
-end
+# function digamma(x::BigFloat)
+#     z = BigFloat()
+#     ccall((:mpfr_digamma, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
+#     return z
+# end
 
 """
     trigamma(x)
@@ -435,11 +435,11 @@ function zeta(s::ComplexOrReal{Float64})
     return ζ
 end
 
-function zeta(x::BigFloat)
-    z = BigFloat()
-    ccall((:mpfr_zeta, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
-    return z
-end
+# function zeta(x::BigFloat)
+#     z = BigFloat()
+#     ccall((:mpfr_zeta, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
+#     return z
+# end
 
 """
     eta(x)
@@ -461,10 +461,10 @@ function eta(z::ComplexOrReal{Float64})
     end
 end
 
-function eta(x::BigFloat)
-    x == 1 && return big_ln2()
-    return -zeta(x) * expm1(big_ln2()*(1-x))
-end
+# function eta(x::BigFloat)
+#     x == 1 && return big_ln2()
+#     return -zeta(x) * expm1(big_ln2()*(1-x))
+# end
 
 # Converting types that we can convert, and not ones we can not
 # Float16, and Float32 and their Complex equivalents can be converted to Float64

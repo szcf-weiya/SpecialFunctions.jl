@@ -122,11 +122,11 @@ for afn in (:airyai, :airyaiprime, :airybi, :airybiprime,
     end
 end
 
-function airyai(x::BigFloat)
-    z = BigFloat()
-    ccall((:mpfr_ai, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
-    return z
-end
+# function airyai(x::BigFloat)
+#     z = BigFloat()
+#     ccall((:mpfr_ai, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
+#     return z
+# end
 
 ## Bessel functions
 
@@ -476,70 +476,70 @@ for bfn in (:besselh, :besselhx)
     end
 end
 
-"""
-    besselj0(x)
+# """
+#     besselj0(x)
 
-Bessel function of the first kind of order 0, ``J_0(x)``.
-"""
-function besselj0(x::BigFloat)
-    z = BigFloat()
-    ccall((:mpfr_j0, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
-    return z
-end
+# Bessel function of the first kind of order 0, ``J_0(x)``.
+# """
+# function besselj0(x::BigFloat)
+#     z = BigFloat()
+#     ccall((:mpfr_j0, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
+#     return z
+# end
 
-"""
-    besselj1(x)
+# """
+#     besselj1(x)
 
-Bessel function of the first kind of order 1, ``J_1(x)``.
-"""
-function besselj1(x::BigFloat)
-    z = BigFloat()
-    ccall((:mpfr_j1, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
-    return z
-end
+# Bessel function of the first kind of order 1, ``J_1(x)``.
+# """
+# function besselj1(x::BigFloat)
+#     z = BigFloat()
+#     ccall((:mpfr_j1, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
+#     return z
+# end
 
-function besselj(n::Integer, x::BigFloat)
-    z = BigFloat()
-    ccall((:mpfr_jn, :libmpfr), Int32, (Ptr{BigFloat}, Clong, Ptr{BigFloat}, Int32), &z, n, &x, ROUNDING_MODE[])
-    return z
-end
+# function besselj(n::Integer, x::BigFloat)
+#     z = BigFloat()
+#     ccall((:mpfr_jn, :libmpfr), Int32, (Ptr{BigFloat}, Clong, Ptr{BigFloat}, Int32), &z, n, &x, ROUNDING_MODE[])
+#     return z
+# end
 
-"""
-    bessely0(x)
+# """
+#     bessely0(x)
 
-Bessel function of the second kind of order 0, ``Y_0(x)``.
-"""
-function bessely0(x::BigFloat)
-    if x < 0
-        throw(DomainError())
-    end
-    z = BigFloat()
-    ccall((:mpfr_y0, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
-    return z
-end
+# Bessel function of the second kind of order 0, ``Y_0(x)``.
+# """
+# function bessely0(x::BigFloat)
+#     if x < 0
+#         throw(DomainError())
+#     end
+#     z = BigFloat()
+#     ccall((:mpfr_y0, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
+#     return z
+# end
 
-"""
-    bessely1(x)
+# """
+#     bessely1(x)
 
-Bessel function of the second kind of order 1, ``Y_1(x)``.
-"""
-function bessely1(x::BigFloat)
-    if x < 0
-        throw(DomainError())
-    end
-    z = BigFloat()
-    ccall((:mpfr_y1, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
-    return z
-end
+# Bessel function of the second kind of order 1, ``Y_1(x)``.
+# """
+# function bessely1(x::BigFloat)
+#     if x < 0
+#         throw(DomainError())
+#     end
+#     z = BigFloat()
+#     ccall((:mpfr_y1, :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
+#     return z
+# end
 
-function bessely(n::Integer, x::BigFloat)
-    if x < 0
-        throw(DomainError())
-    end
-    z = BigFloat()
-    ccall((:mpfr_yn, :libmpfr), Int32, (Ptr{BigFloat}, Clong, Ptr{BigFloat}, Int32), &z, n, &x, ROUNDING_MODE[])
-    return z
-end
+# function bessely(n::Integer, x::BigFloat)
+#     if x < 0
+#         throw(DomainError())
+#     end
+#     z = BigFloat()
+#     ccall((:mpfr_yn, :libmpfr), Int32, (Ptr{BigFloat}, Clong, Ptr{BigFloat}, Int32), &z, n, &x, ROUNDING_MODE[])
+#     return z
+# end
 
 """
     hankelh1(nu, x)

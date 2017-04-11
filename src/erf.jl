@@ -1,7 +1,7 @@
 # This file contains code that was formerly a part of Julia. License is MIT: http://julialang.org/license
 
 using Base.Math: @horner, libm
-using Base.MPFR: ROUNDING_MODE
+# using Base.MPFR: ROUNDING_MODE
 
 for f in (:erf, :erfc)
     @eval begin
@@ -10,11 +10,11 @@ for f in (:erf, :erfc)
         ($f)(x::Real) = ($f)(float(x))
         ($f)(a::Float16) = Float16($f(Float32(a)))
         ($f)(a::Complex32) = Complex32($f(Complex64(a)))
-        function ($f)(x::BigFloat)
-            z = BigFloat()
-            ccall(($(string(:mpfr_,f)), :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
-            return z
-        end
+        # function ($f)(x::BigFloat)
+        #     z = BigFloat()
+        #     ccall(($(string(:mpfr_,f)), :libmpfr), Int32, (Ptr{BigFloat}, Ptr{BigFloat}, Int32), &z, &x, ROUNDING_MODE[])
+        #     return z
+        # end
         ($f)(x::AbstractFloat) = error("not implemented for ", typeof(x))
     end
 end
