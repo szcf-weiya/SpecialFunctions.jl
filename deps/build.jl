@@ -1,12 +1,9 @@
 using BinaryProvider # requires BinaryProvider 0.3.0 or later
-if VERSION < v"0.7.0-DEV.1760"
-    # No need to build or download anything; openspecfun is part of Julia
-else
-    const forcecompile = get(ENV, "JULIA_SPECIALFUNCTIONS_BUILD_SOURCE", "false") == "true"
+const forcecompile = get(ENV, "JULIA_SPECIALFUNCTIONS_BUILD_SOURCE", "false") == "true"
 
     # Parse some basic command-line arguments
     const verbose = "--verbose" in ARGS
-    const prefix = Prefix(get([a for a in ARGS if a != "--verbos"], 1, joinpath(@__DIR__, "usr")))
+    const prefix = Prefix(get([a for a in ARGS if a != "--verbos" if a != "--verbos"], 1, joinpath(@__DIR__, "usr")))
     products = [
         LibraryProduct(prefix, String["libopenspecfun"], :openspecfun),
     ]
@@ -51,4 +48,3 @@ else
         # Write out a deps.jl file that will contain mappings for our products
         write_deps_file(joinpath(@__DIR__, "deps.jl"), products)
     end
-end

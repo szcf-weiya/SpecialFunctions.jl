@@ -5,9 +5,7 @@ using BinDeps: libdir, srcdir, includedir, depsdir, builddir
 using Base.Math: libm
 import BinaryProvider
 
-if VERSION >= v"0.7.0-DEV.3382"
-    using Libdl
-end
+using Libdl
 
 
 BinDeps.@setup

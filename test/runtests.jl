@@ -3,7 +3,7 @@
 using SpecialFunctions
 
 import Compat
-using Compat.Test
+using Test
 
 const SF = SpecialFunctions
 
